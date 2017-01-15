@@ -1,0 +1,39 @@
+<div class="valueset-summary-table" xmlns="http://www.w3.org/1999/xhtml">
+  <table>
+    <tr class="valueset-summary-table-header">
+      <th title="The name of the element." class="col-name">Name</th>
+      <th title="The value of the element." class="col-description">Description</th>
+    </tr>
+    <tr>
+      <td>Defining URL:</td>
+      <td>http://fhir.nhs.net/ValueSet/administrative-gender-ddmap-1-0</td>
+      <tr>
+        <td>Name:</td>
+        <td>Administrative-Gender-DDMap-1-0</td>
+      </tr>
+      <tr>
+        <td>Definition:</td>
+        <td>Here is a valueset description</td>
+      </tr>
+      <tr>
+        <td>OID:</td>
+        <td>2.16.840.1.113883.2.1.3.2.4.16.25</td>
+      </tr>
+      <tr>
+        <td>Copyright:</td>
+        <td>This is copyright!</td>
+      </tr>
+      <tr>
+        <td>Status:</td>
+        <td>Active</td>
+      </tr>
+      <tr>
+        <td>Source Resource:</td>
+        <td>
+          <p>
+            <a target="_blank" href="..\Resources\Profile.GetRecordQueryResponse-Phase-3\Valuesets\administrative-gender-ddmap-1-0.xml">XML</a> / <a target="_blank" href="..\Resources\Profile.GetRecordQueryResponse-Phase-3\Valuesets\administrative-gender-ddmap-1-0.json">JSON</a></p>
+        </td>
+      </tr>
+    </tr>
+  </table>
+</div>

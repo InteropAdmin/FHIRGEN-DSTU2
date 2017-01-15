@@ -1,0 +1,13 @@
+<div class="logical-definition" xmlns="http://www.w3.org/1999/xhtml">
+  <p>This value set includes codes from the following code systems:<br /></p>
+  <div class="import">
+    <div>
+      <ul class="list-unstyled" />
+      <listItems>
+        <li>
+          <p xmlns="">Externally maintained code system: <a href="http://fhir.nhs.net/ValueSet/sds-job-role-name-1-0">http://fhir.nhs.net/ValueSet/sds-job-role-name-1-0</a></p>
+        </li>
+      </listItems>
+    </div>
+  </div>
+</div>

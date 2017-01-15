@@ -1,0 +1,47 @@
+<div xmlns="http://www.w3.org/1999/xhtml">
+  <p>
+    <b>CHIS-BabyPatient-Patient-1-0</b>
+  </p>
+  <table class="dict" width="100%">
+    <tr>
+      <td id="CHIS-BabyPatient-Patient-1-0" width="150px" class="structure">
+        <a exampleName="CHIS-BabyPatient-Patient-1-0"></a>
+        <b>Examples</b>
+      </td>
+      <td class="structure">Description</td>
+      <td width="100px" class="structure">XML File</td>
+    </tr>
+    <tr>
+      <td width="150px">baby-patient</td>
+      <td>baby-patient</td>
+      <td>
+        <a target="_blank" href="../examples\Profile.BirthNotification\baby-patient.xml">
+          <img src="../dist/images/file-xml-xs.png" />
+        </a>
+      </td>
+    </tr>
+  </table>
+</div><div xmlns="http://www.w3.org/1999/xhtml">
+  <p>
+    <b>GPConnect-CareRecord-Composition-1-0</b>
+  </p>
+  <table class="dict" width="100%">
+    <tr>
+      <td id="GPConnect-CareRecord-Composition-1-0" width="150px" class="structure">
+        <a exampleName="GPConnect-CareRecord-Composition-1-0"></a>
+        <b>Examples</b>
+      </td>
+      <td class="structure">Description</td>
+      <td width="100px" class="structure">XML File</td>
+    </tr>
+    <tr>
+      <td width="150px">Composition-CareRecord</td>
+      <td>NHS Patient Care Record</td>
+      <td>
+        <a target="_blank" href="../examples\Profile.GPConnect\Composition-CareRecord.xml">
+          <img src="../dist/images/file-xml-xs.png" />
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
