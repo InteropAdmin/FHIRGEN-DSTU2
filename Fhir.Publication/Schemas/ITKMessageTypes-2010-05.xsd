@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  
+*****************************************************************************************************************
+*   	Description: Schema containing common ITK message types to be used in ITK WSDL
+* 
+* 	Copyright (c) 2010 NHS Conneccting For Health. All rights reserved.
+*   
+*  	Redistribution and use in source and binary forms, with or without
+*  	modification, are permitted provided that the following conditions
+*  	are met:
+*  		1. Redistributions of source code must retain the above copyright
+*     		notice, this list of conditions and the following disclaimer.
+*  		2. Redistributions in binary form must reproduce the above copyright
+*     		notice, this list of conditions and the following disclaimer in the
+*     		documentation and/or other materials provided with the distribution.
+*  		3. All advertising materials mentioning features or use of this software
+*     		must display the following acknowledgement:
+*       This product includes software developed by Health Level Seven.
+*  	THIS SOFTWARE IS PROVIDED BY NHS Conneccting For Health. AND CONTRIBUTORS "AS IS" AND
+*  	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+*  	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+*  	ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+*  	FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+*  	DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+*  	OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+*  	HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+*  	LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+*  	OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+*  	SUCH DAMAGE.
+*
+* CHANGE HISTORY:
+*
+* VERSION   DATE       AUTHOR                   LABEL   DESCRIPTION
+* =======   ========== ======================   ======  ===========================================================
+* 1.0       31-03-2010 Cord Oestmann                    Created this XSD
+*
+********************************************************************************************************************
+-->
+<xsd:schema xmlns:itk="urn:nhs-itk:ns:201005" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:nhs-itk:ns:201005" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:include schemaLocation="ITKDatatypes-2010-05.xsd"/>
+	<xsd:element name="ToolkitErrorInfo" type="itk:ToolkitErrorInfoStruct"/>
+	<xsd:element name="HL7Content" type="xsd:string"/>
+	<xsd:element name="VersionID" type="xsd:string">
+		<!-- It is a requirement that the HL7v2 |^ string is base 64 encoded to ensure that XML reserved 
+             characters do not invalidate the structure of the payload.
+          -->
+	</xsd:element>
+	<xsd:element name="SimpleMessageResponse" type="xsd:string"/>
+</xsd:schema>

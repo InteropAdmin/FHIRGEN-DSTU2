@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:itk="urn:nhs-itk:ns:201005" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:nhs-itk:ns:201005" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:complexType name="ToolkitErrorInfoStruct">
+		<xsd:sequence>
+			<xsd:element name="ErrorID" type="xsd:anyURI"/>
+			<xsd:element name="ErrorCode">
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute name="codeSystem" type="xsd:string" default="2.16.840.1.113883.2.1.3.2.4.17.268"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ErrorText" type="xsd:string"/>
+			<xsd:element name="ErrorDiagnosticText" type="xsd:string" minOccurs="0"/>
+			<xsd:any namespace="##local" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="NHSNumberType">
+		<xsd:restriction base="xsd:string">
+			<xsd:length value="10" fixed="true"/>
+			<xsd:pattern value="[0-9]{10}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DCRConsentFlagType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Explicit Consent"/>
+			<xsd:enumeration value="Explicit Dissent"/>
+			<xsd:enumeration value="Not Specified"/>
+			<xsd:enumeration value=""/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

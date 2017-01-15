@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:itk="urn:nhs-itk:ns:201005" targetNamespace="urn:nhs-itk:ns:201005" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--
+		ITK Distribution Envelope v2.0
+		Damian Murphy (damian.murphy@nhs.net), CfH National Integration Centre
+		16 March 2011
+	-->
+	<xs:element name="DistributionEnvelope" type="itk:distributionEnvelopeType"/>
+	<xs:complexType name="distributionEnvelopeType">
+		<xs:sequence>
+			<xs:element name="header" type="itk:distributionHeaderType"/>
+			<xs:element name="payloads" type="itk:payloadsType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributionHeaderType">
+		<xs:sequence>
+			<xs:element name="addresslist" type="itk:addressListType" minOccurs="0"/>
+			<xs:element name="auditIdentity" type="itk:auditIdentityType" minOccurs="0"/>
+			<xs:element name="manifest" type="itk:manifestType"/>
+			<xs:element name="senderAddress" type="itk:addressType" minOccurs="0"/>
+			<xs:element name="handlingSpecification" type="itk:handlingType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="trackingid" type="itk:uuid" use="required"/>
+		<xs:attribute name="service" type="xs:anyURI" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="handlingType">
+		<xs:sequence>
+			<xs:element name="spec" type="itk:handlingSpecType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="handlingSpecType">
+		<xs:attribute name="key" type="xs:anyURI" use="required"/>
+		<xs:attribute name="value" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="uuid">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-F0-9]{8}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="addressListType">
+		<xs:sequence>
+			<xs:element name="address" type="itk:addressType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addressType">
+		<xs:attribute name="type" type="xs:string" use="optional" default="2.16.840.1.113883.2.1.3.2.4.18.22"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="identityType">
+		<xs:attribute name="type" type="xs:string" use="optional" default="2.16.840.1.113883.2.1.3.2.4.18.27"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="manifestType">
+		<xs:sequence>
+			<xs:element name="manifestitem" type="itk:manifestItemType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:integer" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="auditIdentityType">
+		<xs:sequence>
+			<xs:element name="id" type="itk:identityType" maxOccurs="4"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="manifestItemType">
+		<xs:attribute name="id" type="xs:IDREF" use="required"/>
+		<xs:attribute name="mimetype" type="xs:string" use="required"/>
+		<xs:attribute name="profileid" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="metadata" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="compressed" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="base64" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="encrypted" type="xs:boolean" use="optional" default="false"/>
+		<xs:anyAttribute namespace="##targetNamespace"/>
+	</xs:complexType>
+	<xs:complexType name="payloadsType">
+		<xs:sequence>
+			<xs:element name="payload" type="itk:payloadType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:integer" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="payloadType" mixed="true">
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="filename" type="xs:string" use="optional"/>
+	</xs:complexType>
+</xs:schema>
