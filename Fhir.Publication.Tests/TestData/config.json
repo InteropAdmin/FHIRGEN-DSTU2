@@ -1,8 +1,0 @@
-{
-  "DMS_ONLINE"      :   "TRUE",
-  "DMS_ANALYTICS"   :   "UA-67795986-1",
-  "EXAMPLES_XML"	:	"TRUE",
-  "EXAMPLES_JSON"	:	"TRUE",
-  "DMS_TITLE"		:   "FHIR API implementation guide for GPSoC IM2",
-  "DMS_VERSION"		:	"Version 1.0 : DRAFT A"
-}
