@@ -9,3 +9,8 @@ The tool is still being developed and changes are exepcted to appear. Initially 
 
 ## Master Branch ##
 The master brnch will reflect the code currenty used by NHS Digital in their product sets.
+
+> ### @icon-info-circle Project Genesis
+> Note this project was initially based on a published project created by Furore (also on GitHub - https://github.com/furore-fhir/Fhir.Publication )
+> This project has extended the project significantly as well as making it work for DSTU2.
+
