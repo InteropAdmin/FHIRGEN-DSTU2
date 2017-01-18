@@ -30,7 +30,7 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Bindings
 
             _log.Info(" create Bindings table");
 
-            IEnumerable<ElementDefinition> elementBindings = structureDefinition.Differential.Element
+            IEnumerable<ElementDefinition> elementBindings = structureDefinition.Snapshot.Element
                 .Where(
                    element =>
                        element.Binding != null
