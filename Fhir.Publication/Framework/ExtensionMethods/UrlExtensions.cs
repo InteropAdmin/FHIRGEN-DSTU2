@@ -22,12 +22,24 @@ namespace Hl7.Fhir.Publication.Framework.ExtensionMethods
                     return "http://www.hl7.org/fhir/DSTU2/";
                 case Url.FhirExtension:
                     return "http://fhir.nhs.net/StructureDefinition/extension";
+                case Url.FhirNHSUKExtension:
+                    return "http://fhir.nhs.uk/StructureDefinition/extension";
+                case Url.FhirHL7UKExtension:
+                    return "http://hl7.org.uk/StructureDefinition/Extension";
                 case Url.FhirStructureDefintion:
                     return "http://fhir.nhs.net/StructureDefinition/";
                 case Url.FhirValueSet:
                     return "http://fhir.nhs.net/ValueSet/";
+                case Url.FhirNHSUKValueSet:
+                    return "http://fhir.nhs.uk/ValueSet/";
+                case Url.FhirHL7UKValueSet:
+                    return "http://hl7.org.uk/ValueSet/";
                 case Url.FhirPrefix:
                     return "http://fhir.nhs.net/";
+                case Url.FhirNHSUKPrefix:
+                    return "http://fhir.nhs.uk/";
+                case Url.FhirHL7UKPrefix:
+                    return "http://hl7.org.uk/";
                 default:
                     throw new InvalidEnumArgumentException($" {url} is not a supported url!");
             }
