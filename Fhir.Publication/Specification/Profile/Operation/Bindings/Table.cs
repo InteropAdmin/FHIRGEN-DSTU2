@@ -56,7 +56,7 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Operation.Bindings
 
             foreach (OperationDefinition.ParameterComponent parameter in parameters)
             {
-                _log.Info($" format binding for {parameter.Binding.ValueSet}");
+                _log.Info($" Format binding for {parameter.Binding.ValueSet}");
 
                 string package = resourceStore.Resources.First(
                     resource =>

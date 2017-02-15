@@ -131,7 +131,7 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure
 
             var root = elementDefinition.Path.Split('.').First();
 
-            _log.Info(string.Concat("CreateRow " + elementDefinition.Path + "( " +root + " )"));
+            _log.Info(string.Concat("CreateRow " + elementDefinition.Path + "( " + root + " )"));
 
             row.SetAnchor(elementDefinition.Path);
 
@@ -165,8 +165,9 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure
                         rows.Add(elementRow.Value);
 
                         bool isSlice = elementDefinition.Slicing != null;
+                        bool isRepresentsation = elementDefinition.Representation != null;
 
-                        if (!isSlice)
+                        if (!isSlice && !isRepresentsation)
                         {
                             if (navigator.MoveToFirstChild())
                             {
@@ -209,31 +210,37 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure
             }
             else
             {
-                var elementRow = new ElementRow(
-                    _knowledgeProvider,
-                    elementDefinition,
-                    dictionaryLink,
-                    row,
-                    _package,
-                    _elementName,
-                    profile.Name,
-                    profile.ConstrainedType);
+                bool isRepresentsation = elementDefinition.Representation.Any();
 
-                rows.Add(elementRow.Value);
-
-                bool isSlice = elementDefinition.Slicing != null;
-
-                if (!isSlice)
+                if (!isRepresentsation)
                 {
-                    if (navigator.MoveToFirstChild())
-                    {
-                        do
-                        {
-                            GetElementRow(row.GetSubRows(), navigator, profile, showMissing);
-                        }
-                        while (navigator.MoveToNext());
+                    var elementRow = new ElementRow(
+                        _knowledgeProvider,
+                        elementDefinition,
+                        dictionaryLink,
+                        row,
+                        _package,
+                        _elementName,
+                        profile.Name,
+                        profile.ConstrainedType);
 
-                        navigator.MoveToParent();
+                    rows.Add(elementRow.Value);
+
+                    bool isSlice = elementDefinition.Slicing != null;
+
+
+                    if (!isSlice)
+                    {
+                        if (navigator.MoveToFirstChild())
+                        {
+                            do
+                            {
+                                GetElementRow(row.GetSubRows(), navigator, profile, showMissing);
+                            }
+                            while (navigator.MoveToNext());
+
+                            navigator.MoveToParent();
+                        }
                     }
                 }
 
@@ -258,12 +265,12 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure
         {
             bool result = false;
 
-            if ((elementDefinition.RepresentationElement != null) && (elementDefinition.RepresentationElement.Count > 0) )
+            if ((elementDefinition.RepresentationElement != null) && (elementDefinition.RepresentationElement.Count > 0))
             {
-                var attr = ( elementDefinition.RepresentationElement[0].Value == ElementDefinition.PropertyRepresentation.XmlAttr);
+                var attr = (elementDefinition.RepresentationElement[0].Value == ElementDefinition.PropertyRepresentation.XmlAttr);
                 var last = elementDefinition.Path.Split('.').Last();
 
-                if (attr && last=="id")
+                if (attr && last == "id")
                 {
                     result = true;
                 }

@@ -86,26 +86,35 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Dictionary
 
             foreach (ElementDefinition snapshotElement in structureDefinition.Snapshot.Element)
             {
-                Debug.Print(snapshotElement.Path);
+                Debug.Print("GenerateStructure - "+snapshotElement.Path);
 
-                if (snapshotElement.Slicing != null)
-                    slicedElementPath = snapshotElement.Path;
-                else if (!snapshotElement.Path.StartsWith(slicedElementPath) || slicedElementPath == snapshotElement.Path)
-                    slicedElementPath = string.Empty;
+                var ig01 = snapshotElement.Representation.Any();
 
-                ElementDefinition differentialElement = Array.Find(
-                    differential, 
-                    element => 
-                        element.Path == snapshotElement.Path
+                if (snapshotElement.Representation != null && !snapshotElement.Representation.Any())
+                {
+                    if (snapshotElement.Slicing != null)
+                        slicedElementPath = snapshotElement.Path;
+                    else if (!snapshotElement.Path.StartsWith(slicedElementPath) || slicedElementPath == snapshotElement.Path)
+                        slicedElementPath = string.Empty;
+
+                    ElementDefinition differentialElement = Array.Find(
+                        differential,
+                        element =>
+                            element.Path == snapshotElement.Path
+                            &&
+                            element.Name == snapshotElement.Name);
+
+                    if (!HasZeroCardinality(snapshotElement, differential)
                         &&
-                        element.Name == snapshotElement.Name);
-
-                if(!HasZeroCardinality(snapshotElement, differential) 
-                    && 
-                    slicedElementPath == string.Empty)
-                    GenerateElement(
-                        differentialElement ?? snapshotElement,
-                        structureDefinition.Name);             
+                        slicedElementPath == string.Empty)
+                        GenerateElement(
+                            differentialElement ?? snapshotElement,
+                            structureDefinition.Name);
+                }
+                else
+                {
+                    Debug.Print("Ignore Representation element");
+                }     
             }
 
             Write("</table>\r\n");
