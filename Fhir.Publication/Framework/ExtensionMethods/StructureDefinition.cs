@@ -64,7 +64,7 @@ namespace Hl7.Fhir.Publication.Framework.ExtensionMethods
         public static IEnumerable<string> GetExtensions(this Model.StructureDefinition definition)
         {
             IEnumerable<string> extensions =
-                definition.Differential?.Element
+                definition.Snapshot?.Element
                     .Where(
                         element =>
                             element.Type.Any(

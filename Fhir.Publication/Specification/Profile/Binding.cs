@@ -28,6 +28,12 @@ namespace Hl7.Fhir.Publication.Specification.Profile
             if (reference.StartsWith(Url.FhirStructureDefintion.GetUrlString()))
                 return KnowledgeProvider.GetLinkForLocalResource(resourceStore.GetStructureDefinitionNameByUrl(reference, packageName));
 
+            if (reference.StartsWith(Url.FhirNHSUKValueSet.GetUrlString()))
+                return KnowledgeProvider.GetLinkForLocalResource(resourceStore.GetValuesetNameByUrl(reference, packageName));
+
+            if (reference.StartsWith(Url.FhirHL7UKValueSet.GetUrlString()))
+                return KnowledgeProvider.GetLinkForLocalResource(resourceStore.GetValuesetNameByUrl(reference, packageName));
+
             return reference.StartsWith(Url.FhirValueSet.GetUrlString())
                 ? KnowledgeProvider.GetLinkForLocalResource(resourceStore.GetValuesetNameByUrl(reference, packageName))
                 : reference;
