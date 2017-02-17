@@ -167,7 +167,7 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure
                         bool isSlice = elementDefinition.Slicing != null;
                         bool isRepresentsation = elementDefinition.Representation != null;
 
-                        if (!isSlice && !isRepresentsation)
+                        if (!isSlice)
                         {
                             if (navigator.MoveToFirstChild())
                             {
