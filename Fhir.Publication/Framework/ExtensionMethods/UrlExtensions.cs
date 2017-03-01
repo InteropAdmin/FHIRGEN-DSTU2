@@ -28,6 +28,10 @@ namespace Hl7.Fhir.Publication.Framework.ExtensionMethods
                     return "https://fhir.hl7.org.uk/StructureDefinition/Extension";
                 case Url.FhirStructureDefintion:
                     return "http://fhir.nhs.net/StructureDefinition/";
+                case Url.FhirHL7UKStructureDefintion:
+                    return "https://fhir.nhs.uk/StructureDefinition/";
+                case Url.FhirNHSUKStructureDefintion:
+                    return "https://fhir.hl7.org.uk/StructureDefinition/";
                 case Url.FhirValueSet:
                     return "http://fhir.nhs.net/ValueSet/";
                 case Url.FhirNHSUKValueSet:
