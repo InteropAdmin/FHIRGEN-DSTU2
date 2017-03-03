@@ -63,7 +63,8 @@ namespace Hl7.Fhir.Publication.Specification.Profile.ValueSet.Index
 
             foreach (Model.ValueSet valueSet in package.ValueSets)
             {
-                if (valueSet.Url.Contains(Url.FhirValueSet.GetUrlString()))
+                // if (valueSet.Url.Contains(Url.FhirValueSet.GetUrlString()))
+                if (LocalValueSet(valueSet.Url))
                 {
                     var fileName = valueSet.Url.Split('/').Last();
 
@@ -74,6 +75,17 @@ namespace Hl7.Fhir.Publication.Specification.Profile.ValueSet.Index
             }
 
             return table;
+        }
+
+        private bool LocalValueSet(string url)
+        {
+            bool res = false;
+
+            if (url.Contains(Url.FhirValueSet.GetUrlString())) res = true;
+            if (url.Contains(Url.FhirNHSUKValueSet.GetUrlString())) res = true;
+            if (url.Contains(Url.FhirHL7UKValueSet.GetUrlString())) res = true;
+
+            return res;
         }
     }
 }

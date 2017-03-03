@@ -22,7 +22,9 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Type
             else if (HasNhsFhirPrefix(url))
                 SetLocalResourceReferenceCell(url);
             else
-                Cell.AddPiece(new TableModel.Piece(url, url, null));
+                //  Cell.AddPiece(new TableModel.Piece(url, url, null));
+                // Cell = new TableModel.Cell(null, url, url, null, null);
+                throw new InvalidOperationException(string.Concat(" Invalid resource reference ", url));
         }
 
         private static bool HasHl7Prefix(string typeName)
@@ -43,7 +45,12 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Type
 
         private static bool HasNhsFhirPrefix(string url)
         {
-            return url.StartsWith(Url.FhirPrefix.GetUrlString());
+            return
+                (
+                url.StartsWith(Url.FhirPrefix.GetUrlString()) ||
+                url.StartsWith(Url.FhirNHSUKPrefix.GetUrlString()) ||
+                url.StartsWith(Url.FhirHL7UKPrefix.GetUrlString())
+                );
         }
 
         private void SetLocalResourceReferenceCell(string url)

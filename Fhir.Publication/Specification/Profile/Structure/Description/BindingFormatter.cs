@@ -35,7 +35,8 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Description
             _cell = cell;
 
             if (string.IsNullOrEmpty(_binding.Description))
-                throw new InvalidOperationException($" {Binding.BindingUrl} : Binding description cannot be empty!");
+                _binding.Description = string.Empty;
+//throw new InvalidOperationException($" {Binding.BindingUrl} : Binding description cannot be empty!");
 
             if (_binding.Strength == null)
                 throw new InvalidOperationException($" {Binding.BindingUrl} : Binding strength cannot be empty!");

@@ -30,7 +30,7 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Bindings
 
             _log.Info(" create Bindings table");
 
-            IEnumerable<ElementDefinition> elementBindings = structureDefinition.Differential.Element
+            IEnumerable<ElementDefinition> elementBindings = structureDefinition.Snapshot.Element
                 .Where(
                    element =>
                        element.Binding != null
@@ -58,6 +58,10 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Bindings
             foreach (ElementDefinition element in elementDefinitionsArray)
             {
                 element.Name = HasName(element) ? element.Name : element.Path.Split('.').Last();
+                if (element.Binding.ValueSet == null)
+                {
+                    _log.Info($" Binding Issue for {element.Path} valueset is missing.");
+                }
             }
 
             foreach (ElementDefinition element in elementDefinitionsArray.Distinct(new ElementDefinitionComparer()))
@@ -77,12 +81,11 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Bindings
 
         private bool HasName(ElementDefinition element)
         {
-            bool hasName = !string.IsNullOrEmpty(element.Name);
+            return !string.IsNullOrEmpty(element.Name);
 
-            if (!hasName)
-                _log.Warning($"*** element Name for {element.Path} has not been populated!");
+            //if (!hasName)
+            //    _log.Warning($"*** element Name for {element.Path} has not been populated!");
 
-            return hasName;
         }
 
         private TableModel.Row GetCells(string path, string bindingStrength)

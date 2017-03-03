@@ -70,7 +70,7 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Rows
         protected void FormatSliceRow()
         {
             TableRow.SetIcon(_sliceIcon);
-            TableRow.GetCells()[_cardinalityCellIndex].GetPieces().Clear();
+           // TableRow.GetCells()[_cardinalityCellIndex].GetPieces().Clear();
             TableRow.GetCells()[_typeCellIndex].GetPieces().Clear();
 
         }

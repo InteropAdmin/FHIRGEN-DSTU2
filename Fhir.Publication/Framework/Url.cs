@@ -8,9 +8,21 @@
         V3SystemPrefix,
         FhirSystemPrefix,
         Dstu,
-        FhirExtension,
+        
         FhirStructureDefintion,
+
+        FhirPrefix,
+        FhirNHSUKPrefix,
+        FhirHL7UKPrefix,
+
+        FhirExtension,
+        FhirNHSUKExtension,
+        FhirHL7UKExtension,
+
         FhirValueSet,
-        FhirPrefix
+        FhirNHSUKValueSet,
+        FhirHL7UKValueSet,
+        FhirHL7UKStructureDefintion,
+        FhirNHSUKStructureDefintion
     }
 }

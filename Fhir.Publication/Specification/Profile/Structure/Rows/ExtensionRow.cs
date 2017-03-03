@@ -42,9 +42,6 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Rows
             {
                 TableRow.GetCells().Add(Name);
 
-                //TODO
-                //TableRow.GetCells().Add(Cardinality);
-
                 TableRow.GetCells().Add(Cardinality);
 
                 TableRow.GetCells().Add(ExtensionType());
@@ -95,6 +92,8 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Rows
                          type.Profile
                               .Any(profile =>
                                     profile.StartsWith(Url.FhirExtension.GetUrlString())
+                                    || profile.StartsWith(Url.FhirNHSUKExtension.GetUrlString())
+                                    || profile.StartsWith(Url.FhirHL7UKExtension.GetUrlString())
                                     || profile.StartsWith(Url.Hl7StructureDefintion.GetUrlString())))
                .ProfileElement
                .Single()
