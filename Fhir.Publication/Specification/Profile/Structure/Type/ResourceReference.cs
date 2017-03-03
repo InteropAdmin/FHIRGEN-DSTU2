@@ -43,7 +43,12 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Type
 
         private static bool HasNhsFhirPrefix(string url)
         {
-            return url.StartsWith(Url.FhirPrefix.GetUrlString());
+            return
+                (
+                url.StartsWith(Url.FhirPrefix.GetUrlString()) ||
+                url.StartsWith(Url.FhirNHSUKPrefix.GetUrlString()) ||
+                url.StartsWith(Url.FhirHL7UKPrefix.GetUrlString())
+                );
         }
 
         private void SetLocalResourceReferenceCell(string url)
