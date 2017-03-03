@@ -21,6 +21,8 @@
 
         FhirValueSet,
         FhirNHSUKValueSet,
-        FhirHL7UKValueSet
+        FhirHL7UKValueSet,
+        FhirHL7UKStructureDefintion,
+        FhirNHSUKStructureDefintion
     }
 }

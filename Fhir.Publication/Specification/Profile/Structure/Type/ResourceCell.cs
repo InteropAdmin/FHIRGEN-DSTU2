@@ -56,7 +56,11 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Type
 
         private bool IsLocalResource()
         {
-            return _referenceName.StartsWith(Url.FhirStructureDefintion.GetUrlString());
+            if (_referenceName.StartsWith(Url.FhirStructureDefintion.GetUrlString())) return true;
+            if (_referenceName.StartsWith(Url.FhirHL7UKStructureDefintion.GetUrlString())) return true;
+            if (_referenceName.StartsWith(Url.FhirNHSUKStructureDefintion.GetUrlString())) return true;
+
+            return false;
         }
 
         private void CreateLocalResourceCell()
