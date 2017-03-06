@@ -27,8 +27,21 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Type
 
         private static bool HasHl7Prefix(string typeName)
         {
-            return typeName.StartsWith(Url.Hl7StructureDefintion.GetUrlString());
+            return typeName.ToUpper().StartsWith(Url.Hl7StructureDefintion.GetUrlString().ToUpper());
         }
+
+        private static bool HasNhsFhirPrefix(string url)
+        {
+            url = url.ToUpper();
+
+            return
+                (
+                url.StartsWith(Url.FhirPrefix.GetUrlString().ToUpper()) ||
+                url.StartsWith(Url.FhirNHSUKPrefix.GetUrlString().ToUpper()) ||
+                url.StartsWith(Url.FhirHL7UKPrefix.GetUrlString().ToUpper())
+                );
+        }
+
 
         private void SetGlobalResourceReferenceCell(string url)
         {
@@ -39,16 +52,6 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Type
             Cell = definedType == FHIRDefinedType.Resource
                 ? new TableModel.Cell(null, null, definedType.ToString(), null, null)
                 : new TableModel.Cell(null, KnowledgeProvider.GetLinkForTypeDocument(definedType), definedType.ToString(), null, null);
-        }
-
-        private static bool HasNhsFhirPrefix(string url)
-        {
-            return
-                (
-                url.StartsWith(Url.FhirPrefix.GetUrlString()) ||
-                url.StartsWith(Url.FhirNHSUKPrefix.GetUrlString()) ||
-                url.StartsWith(Url.FhirHL7UKPrefix.GetUrlString())
-                );
         }
 
         private void SetLocalResourceReferenceCell(string url)

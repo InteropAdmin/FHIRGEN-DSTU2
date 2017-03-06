@@ -81,6 +81,8 @@ namespace Hl7.Fhir.Publication.Specification.Profile
 
         public bool IsComplexDataType(FHIRDefinedType dataType)
         {
+            if (dataType.ToString().ToLower() == "xhtml") return true;
+
             return _xDoc.Descendants(_xmlXs + "complexType")
                   .Select(
                       element =>

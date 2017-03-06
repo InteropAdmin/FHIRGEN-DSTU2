@@ -11,9 +11,9 @@ namespace Hl7.Fhir.Publication.Framework.ExtensionMethods
                 case Url.None:
                     return string.Empty;
                 case Url.Hl7StructureDefintion:
-                    return "http://hl7.org/fhir/StructureDefinition/"; 
+                    return "http://hl7.org/fhir/StructureDefinition/";
                 case Url.V2SystemPrefix:
-                    return "http://hl7.org/fhir/v2/"; 
+                    return "http://hl7.org/fhir/v2/";
                 case Url.V3SystemPrefix:
                     return "http://hl7.org/fhir/v3/";
                 case Url.FhirSystemPrefix:
@@ -25,21 +25,25 @@ namespace Hl7.Fhir.Publication.Framework.ExtensionMethods
                 case Url.FhirNHSUKExtension:
                     return "https://fhir.nhs.uk/StructureDefinition/extension";
                 case Url.FhirHL7UKExtension:
-                    return "https://hl7.org.uk/StructureDefinition/Extension";
+                    return "https://fhir.hl7.org.uk/StructureDefinition/Extension";
                 case Url.FhirStructureDefintion:
                     return "http://fhir.nhs.net/StructureDefinition/";
+                case Url.FhirHL7UKStructureDefintion:
+                    return "https://fhir.nhs.uk/StructureDefinition/";
+                case Url.FhirNHSUKStructureDefintion:
+                    return "https://fhir.hl7.org.uk/StructureDefinition/";
                 case Url.FhirValueSet:
                     return "http://fhir.nhs.net/ValueSet/";
                 case Url.FhirNHSUKValueSet:
                     return "https://fhir.nhs.uk/ValueSet/";
                 case Url.FhirHL7UKValueSet:
-                    return "https://hl7.org.uk/ValueSet/";
+                    return "https://fhir.hl7.org.uk/ValueSet/";
                 case Url.FhirPrefix:
                     return "http://fhir.nhs.net/";
                 case Url.FhirNHSUKPrefix:
                     return "https://fhir.nhs.uk/";
                 case Url.FhirHL7UKPrefix:
-                    return "https://hl7.org.uk/";
+                    return "https://fhir.hl7.org.uk/";
                 default:
                     throw new InvalidEnumArgumentException($" {url} is not a supported url!");
             }

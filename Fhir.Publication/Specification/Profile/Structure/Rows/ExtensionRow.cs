@@ -93,11 +93,8 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Rows
                 typeName = ElementDefinition.Type
                .Single(type =>
                          type.Profile
-                              .Any(profile =>
-                                    profile.StartsWith(Url.FhirExtension.GetUrlString())
-                                    || profile.StartsWith(Url.FhirNHSUKExtension.GetUrlString())
-                                    || profile.StartsWith(Url.FhirHL7UKExtension.GetUrlString())
-                                    || profile.StartsWith(Url.Hl7StructureDefintion.GetUrlString())))
+                              .Any(profile => IsLocalExtension(profile)
+                                    ))
                .ProfileElement
                .Single()
                .ToString();
@@ -114,13 +111,23 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Rows
                 _cell.AddPiece(new TableModel.Piece(_lineBreak));
             }
             catch (Exception)
-            {
-
-            }
+            {}
 
             return _cell;
         }
 
+        private bool IsLocalExtension(string profile)
+        {
+            bool res = false;
+            profile = profile.ToUpper();
+
+            if (profile.StartsWith(Url.FhirExtension.GetUrlString().ToUpper())) return true;
+            if (profile.StartsWith(Url.FhirNHSUKExtension.GetUrlString().ToUpper())) return true;
+            if (profile.StartsWith(Url.FhirHL7UKExtension.GetUrlString().ToUpper())) return true;
+            if (profile.StartsWith(Url.Hl7StructureDefintion.GetUrlString().ToUpper())) return true;
+
+            return res;
+        }
 
         private void GetTypeCell()
         {
