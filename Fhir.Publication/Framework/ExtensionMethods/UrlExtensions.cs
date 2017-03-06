@@ -11,9 +11,9 @@ namespace Hl7.Fhir.Publication.Framework.ExtensionMethods
                 case Url.None:
                     return string.Empty;
                 case Url.Hl7StructureDefintion:
-                    return "http://hl7.org/fhir/StructureDefinition/"; 
+                    return "http://hl7.org/fhir/StructureDefinition/";
                 case Url.V2SystemPrefix:
-                    return "http://hl7.org/fhir/v2/"; 
+                    return "http://hl7.org/fhir/v2/";
                 case Url.V3SystemPrefix:
                     return "http://hl7.org/fhir/v3/";
                 case Url.FhirSystemPrefix:
