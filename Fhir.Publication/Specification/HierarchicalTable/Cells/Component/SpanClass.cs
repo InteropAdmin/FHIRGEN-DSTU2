@@ -15,16 +15,11 @@ namespace Hl7.Fhir.Publication.Specification.HierarchicalTable.Cells.Component
             _labelType = labelType;
             _text = text;
         }
-        //private IEnumerable<XAttribute> CreateAttributes()
-        //{
-        //    yield return new XAttribute("class", "label label-" + _labelType);
-        //}
 
         protected override void PopulateElement(XElement element)
         {
             element.Add(new XAttribute("class", "label label-" + _labelType + " label-big"));
             element.Add(new XText(_text));
         }
-
     }
 }

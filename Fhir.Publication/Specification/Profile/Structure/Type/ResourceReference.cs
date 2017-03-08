@@ -22,8 +22,6 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Type
             else if (HasNhsFhirPrefix(url))
                 SetLocalResourceReferenceCell(url);
             else
-                //  Cell.AddPiece(new TableModel.Piece(url, url, null));
-                // Cell = new TableModel.Cell(null, url, url, null, null);
                 throw new InvalidOperationException(string.Concat(" Invalid resource reference ", url));
         }
 

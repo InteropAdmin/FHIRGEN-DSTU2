@@ -236,6 +236,7 @@
     <Compile Include="Specification\Profile\Structure\Cardinality.cs" />
     <Compile Include="Specification\Profile\Structure\Extensions\Table.cs" />
     <Compile Include="Specification\Profile\Structure\IconSetter.cs" />
+    <Compile Include="Specification\Profile\Structure\Rows\ElementFlags.cs" />
     <Compile Include="Specification\Profile\Structure\Rows\ReferenceToParentRow.cs" />
     <Compile Include="Specification\Profile\Structure\Rows\Row.cs" />
     <Compile Include="Specification\Profile\Structure\Cell.cs" />

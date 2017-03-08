@@ -35,8 +35,7 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Rows
             {
                 TableRow.GetCells().Add(Name);
 
-                //TODO
-                //TableRow.GetCells().Add(new TableModel.Cell());
+                TableRow.GetCells().Add(Flags); 
 
                 TableRow.GetCells().Add(Cardinality);
 
@@ -57,6 +56,8 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Rows
                     _elementName,
                     !HasShortDescription ? null : ElementDefinition.Short,
                     null);
+
+        private TableModel.Cell Flags => ElementFlags.GetFlagsCell(ElementDefinition);
 
         private TableModel.Cell Type => GetTypeCell();
 

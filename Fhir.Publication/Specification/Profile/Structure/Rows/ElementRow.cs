@@ -1,5 +1,6 @@
 ﻿using System;
 using Hl7.Fhir.Model;
+using System.Collections.Generic;
 
 namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Rows
 {
@@ -17,7 +18,7 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Rows
             ImplementationGuide.Package package,
             string elementName,
             string resourceName,
-            FHIRDefinedType? constrainedType) 
+            FHIRDefinedType? constrainedType)
             : base(
                   package,
                   knowledgeProvider,
@@ -44,8 +45,7 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Rows
             {
                 TableRow.GetCells().Add(Name);
 
-                //TODO
-                //TableRow.GetCells().Add(Flags);
+                TableRow.GetCells().Add(Flags);
 
                 TableRow.GetCells().Add(Cardinality);
 
@@ -62,13 +62,13 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Rows
 
         private TableModel.Cell Name => GetNameCell();
 
-        private TableModel.Cell Flags => GetFlagsCell();
+        private TableModel.Cell Flags => ElementFlags.GetFlagsCell(ElementDefinition);
 
         private new TableModel.Cell Cardinality => new TableModel.Cell(null, null, GetCardinalityText(), null, null);
 
-        private  TableModel.Cell Type => 
-            ElementDefinition.Definition != null 
-                ? new Type.Factory(ElementDefinition, _resourceName, Package, KnowledgeProvider).GetCells() 
+        private TableModel.Cell Type =>
+            ElementDefinition.Definition != null
+                ? new Type.Factory(ElementDefinition, _resourceName, Package, KnowledgeProvider).GetCells()
                 : new TableModel.Cell();
 
         private string GetCardinalityText()
@@ -77,7 +77,7 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Rows
             ? string.Empty
             : new Cardinality(ElementDefinition, null).Value;
         }
-         
+
         private TableModel.Cell GetNameCell()
         {
             if (ElementDefinition.Name != null & IsSliced())
@@ -88,10 +88,41 @@ namespace Hl7.Fhir.Publication.Specification.Profile.Structure.Rows
 
         private TableModel.Cell GetFlagsCell()
         {
-            if (ElementDefinition.Name != null & IsSliced())
-                return new TableModel.Cell(null, Reference, string.Concat(_elementName, " (", ElementDefinition.Name, ")"), ElementDefinition.Definition, null);
-            else
-                return new TableModel.Cell(null, Reference, _elementName, !HasShortDescription ? null : ElementDefinition.Short, null);
+            var _cell = new TableModel.Cell();
+
+            if (ElementDefinition.IsModifier != null && ElementDefinition.IsModifier == true)
+            {
+                _cell.GetPieces()
+                        .Add(new TableModel.Piece("flag-grey", "?!"));  
+            }
+
+            if (ElementDefinition.MustSupport != null && ElementDefinition.MustSupport == true)
+            {
+                _cell.GetPieces()
+                        .Add(new TableModel.Piece("flag-red", "S"));
+            }
+
+            if (ElementDefinition.Constraint != null && ElementDefinition.Constraint.Count > 0)
+            {
+                List<string> cons = ElementDefinition.Constraint.ConvertAll(con => con.Key);
+
+                cons.RemoveAll(p => p.StartsWith("ele"));
+                cons.RemoveAll(p => p.StartsWith("dom"));
+
+                if (cons.Count > 0)
+                {
+                    _cell.GetPieces()
+                                .Add(new TableModel.Piece("flag-grey", "I"));
+                }
+            }
+
+            if (ElementDefinition.IsSummary != null && ElementDefinition.IsSummary == true)
+            {
+                _cell.GetPieces()
+                        .Add(new TableModel.Piece("flag-grey", "\u2211"));
+            }
+
+            return _cell;
         }
 
         private static bool IsRootElement(FHIRDefinedType? constrainedType, string path)

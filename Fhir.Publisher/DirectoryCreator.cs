@@ -9,7 +9,8 @@ namespace Hl7.Fhir
     {
         public void WriteAllText(string path, string contents)
         {
-            File.WriteAllText(path, contents);
+            // Ensure UTF8 Encoding so as to allow for the symbols used for "flags" in the HTML 
+            File.WriteAllText(path, contents,System.Text.Encoding.UTF8);
         }
 
         public bool FileExists(string path)

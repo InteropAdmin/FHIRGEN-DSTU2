@@ -40,6 +40,7 @@ namespace Hl7.Fhir.Publication.Specification.TableModel
             var model = new Model();
 
             model.Titles.Add(new Title(null, null, "Name", "The logical name of the element", null, 0));
+            model.Titles.Add(new Title(null, null, "Flags", "Information about the use of the element", null, 0));
             model.Titles.Add(new Title(null, null, "Card.", "Minimum and maximum # of times the element can appear in the instance", null, 0));
             model.Titles.Add(new Title(null, null, "Type", "Reference to the type of the element", null, 100));
             model.Titles.Add(new Title(null, null, "Description & Constraints", null, null, 0));
